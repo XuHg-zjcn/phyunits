@@ -10,7 +10,7 @@ from dims import Dims
 
 
 class PhyDims(Dims):
-    def __init__(self, arr, xref=False):
+    def __init__(self, arr):
         """
 
         Parameters
@@ -28,10 +28,10 @@ class PhyDims(Dims):
         arr = np.array(arr)
         assert arr.shape == (7,),\
             f'array must dim=1, length=7(base dims), but current is {arr.shape}'
-        super().__init__(arr, xref)
+        super().__init__(arr)
 
     @classmethod
-    def from_nums(cls, L=0, M=0, T=0, I=0, K=0, n=0, J=0, xref=False):
+    def from_nums(cls, L=0, M=0, T=0, I=0, K=0, n=0, J=0):
         """
         Parameters
         ----------
@@ -50,4 +50,4 @@ class PhyDims(Dims):
             PhyDims object.
 
         """
-        return cls([L, M, T, I, K, n, J], xref)
+        return cls([L, M, T, I, K, n, J])

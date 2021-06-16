@@ -15,5 +15,4 @@
 打印信息  
 数量级词头  
 解析字符串单位  
-Dims.xref 移到 PhyVar.xref  
 保存数据到sqlite  

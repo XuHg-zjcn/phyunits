@@ -15,7 +15,7 @@ class PhyUnit:
         if isinstance(dims, PhyDims):
             self.dims = dims
         else:
-            self.dims = PhyDims(dims, False)
+            self.dims = PhyDims(dims)
         self.xrate = xrate  # rate of SI unit
         self.unit = unit    # 'cm', 'kg'
         self.name = name    # 'length', 'killgram'
