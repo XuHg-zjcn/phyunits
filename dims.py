@@ -42,14 +42,14 @@ class Dims:
 
     def __mul__(self, other):
         if isinstance(other, Number):
-            return self.copy()
+            return self
         assert not (self.xref or other.xref),\
             "can't mul any with 'reference system related' flag"
         return self.__class__(self.arr + other.arr, False)
 
     def __truediv__(self, other):
         if isinstance(other, Number):
-            return self.copy()
+            return self
         assert not(self.xref or other.xref),\
             "can't div any with 'reference system related' flag"
         return self.__class__(self.arr - other.arr, False)
