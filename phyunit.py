@@ -53,30 +53,26 @@ class PhyUnit:
         return self.__class__(self.dims**other, self.xrate**other)
 
 
-base_units = {#L, M, T, I, K, n, J
-'m' : PhyUnit([1, 0, 0, 0, 0, 0, 0]),
-'kg': PhyUnit([0, 1, 0, 0, 0, 0, 0]),
-'s' : PhyUnit([0, 0, 1, 0, 0, 0, 0]),
-'A' : PhyUnit([0, 0, 0, 1, 0, 0, 0]),
-'K' : PhyUnit([0, 0, 0, 0, 1, 0, 0]),
-'mol':PhyUnit([0, 0, 0, 0, 0, 1, 0]),
-'cd': PhyUnit([0, 0, 0, 0, 0, 0, 1]),
-}
-
-def proc_dict(base_dict):
-    old = globals().copy()
-    globals().update(base_dict)
-    # start ops, you can ignore IDE error
+def gen_dict():
+    k_old = set(locals().keys())
+    # base units [L, M, T, I, K, n, J]
+    m  = PhyUnit([1, 0, 0, 0, 0, 0, 0])
+    kg = PhyUnit([0, 1, 0, 0, 0, 0, 0])
+    s  = PhyUnit([0, 0, 1, 0, 0, 0, 0])
+    A  = PhyUnit([0, 0, 0, 1, 0, 0, 0])
+    K  = PhyUnit([0, 0, 0, 0, 1, 0, 0])
+    mol= PhyUnit([0, 0, 0, 0, 0, 1, 0])
+    cd = PhyUnit([0, 0, 0, 0, 0, 0, 1])
+    # start ops
     g = kg/1000
     N = kg*s
     Pa = N/(m**2)
     C = A*s
     # end ops
-    new = globals().copy()
-    for i in old:
-        new.pop(i)
-    for k,v in zip(new.keys(), new.values()):
-        v.unit = k
-    return new
+    loc = locals()
+    k_new = set(loc.keys())
+    keys = k_new-k_old
+    return dict(map(lambda k: (k, loc[k]), keys))
 
-units = proc_dict(base_units)
+
+units = gen_dict()
