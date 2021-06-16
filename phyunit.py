@@ -53,11 +53,7 @@ class PhyUnit:
         return self.__class__(self.dims**other, self.xrate**other)
 
 
-def proc_dict(d):
-    for k,v in zip(d.keys(), d.values()):
-        v.unit = k
-
-units = {    # L, M, T, I, K, n, J
+base_units = {    # L, M, T, I, K, n, J
 'm' : PhyUnit([1, 0, 0, 0, 0, 0, 0]),
 'kg': PhyUnit([0, 1, 0, 0, 0, 0, 0]),
 's' : PhyUnit([0, 0, 1, 0, 0, 0, 0]),
@@ -67,9 +63,20 @@ units = {    # L, M, T, I, K, n, J
 'cd': PhyUnit([0, 0, 0, 0, 0, 0, 1]),
 }
 
-units['g'] = units['kg']/1000      # used for magnitude
-units['N'] = units['kg']*units['s']
-units['Pa'] = units['N']/(units['m']**2)
-units['C'] = units['A']*units['s']
+def proc_dict(base_dict):
+    old = globals().copy()
+    globals().update(base_dict)
+    # start ops, you can ignore IDE error
+    g = kg/1000
+    N = kg*s
+    Pa = N/(m**2)
+    C = A*s
+    # end ops
+    new = globals().copy()
+    for i in old:
+        new.pop(i)
+    for k,v in zip(new.keys(), new.values()):
+        v.unit = k
+    return new
 
-proc_dict(units)
+units = proc_dict(base_units)
