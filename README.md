@@ -12,8 +12,8 @@
 
 
 ###计划
-打印信息
+打印信息  
 数量级词头  
 解析字符串单位  
-实现类PhyVar, PhyVal  
 Dims.xref 移到 PhyVar.xref  
+保存数据到sqlite  

@@ -10,7 +10,7 @@ from phydims import PhyDims
 
 
 class PhyUnit:
-    def __init__(self, dims, xrate=1,
+    def __init__(self, dims, xrate=1.0,
                  unit='', name="", desc=""):
         if isinstance(dims, PhyDims):
             self.dims = dims

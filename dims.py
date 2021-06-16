@@ -65,3 +65,6 @@ class Dims:
             return self.__class__(arr2, False)
         else:
             raise TypeError(f'unsupport type {type(other)} for exp')
+
+    def __eq__(self, other):
+        return all(self.arr == other.arr)
