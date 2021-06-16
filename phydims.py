@@ -5,33 +5,14 @@ Created on Wed Jun 16 18:37:29 2021
 
 @author: xrj
 """
+from collections import Iterable
+
 import numpy as np
 from dims import Dims
 
 
 class PhyDims(Dims):
-    def __init__(self, arr):
-        """
-
-        Parameters
-        ----------
-        arr : np.array
-            length-7 int dims numbers..
-        xref : bool, optional
-            @ref to Dims.__init__. The default is False.
-
-        Returns
-        -------
-        None.
-
-        """
-        arr = np.array(arr)
-        assert arr.shape == (7,),\
-            f'array must dim=1, length=7(base dims), but current is {arr.shape}'
-        super().__init__(arr)
-
-    @classmethod
-    def from_nums(cls, L=0, M=0, T=0, I=0, K=0, n=0, J=0):
+    def __init__(self, L=0, M=0, T=0, I=0, K=0, n=0, J=0):
         """
         Parameters
         ----------
@@ -50,4 +31,12 @@ class PhyDims(Dims):
             PhyDims object.
 
         """
-        return cls([L, M, T, I, K, n, J])
+        if isinstance(L, Dims):
+            arr = L.arr
+        elif isinstance(L, Iterable):
+            arr = np.array(L)
+        else:
+            arr = np.array([L, M, T, I, K, n, J])
+        assert arr.shape == (7,),\
+            f'array must shape==(7,), as 7 base dimension, but current shape={arr.shape}'
+        super().__init__(arr)

@@ -53,7 +53,7 @@ class PhyUnit:
         return self.__class__(self.dims**other, self.xrate**other)
 
 
-base_units = {    # L, M, T, I, K, n, J
+base_units = {#L, M, T, I, K, n, J
 'm' : PhyUnit([1, 0, 0, 0, 0, 0, 0]),
 'kg': PhyUnit([0, 1, 0, 0, 0, 0, 0]),
 's' : PhyUnit([0, 0, 1, 0, 0, 0, 0]),

@@ -76,7 +76,7 @@ class PhyVar:
                               name=self.name + '^' + str(power))
 
 
-length = PhyVar(PhyDims.from_nums(L=1), sym='l', name="length")
-area = PhyVar(PhyDims.from_nums(L=2), sym='S', name='area')
-volume = PhyVar(PhyDims.from_nums(L=3), sym='V', name="volume")
-mass = PhyVar(PhyDims.from_nums(M=1), sym='m', name='mass')
+length = PhyVar(PhyDims(L=1), sym='l', name="length")
+area = PhyVar(PhyDims(L=2), sym='S', name='area')
+volume = PhyVar(PhyDims(L=3), sym='V', name="volume")
+mass = PhyVar(PhyDims(M=1), sym='m', name='mass')
