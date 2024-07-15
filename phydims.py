@@ -5,7 +5,7 @@ Created on Wed Jun 16 18:37:29 2021
 
 @author: xrj
 """
-from collections import Iterable
+from collections.abc import Iterable
 
 import numpy as np
 from dims import Dims
